@@ -1,19 +1,14 @@
-# 📁 utils/predictor.py
-
 import pickle
 import numpy as np
 import pandas as pd
 
-# 📦 Загрузка модели и энкодеров
 with open("model_v2/xgb_model.pkl", "rb") as f:
     model = pickle.load(f)
 
 with open("model_v2/encoders.pkl", "rb") as f:
     encoders = pickle.load(f)
 
-# 🔮 Основная функция предсказания
 def predict_default(user_input: dict) -> int:
-    # 📐 Расчёт adjusted_income
     income = user_input.get("Income", 0)
     spouse_income = user_input.get("Spouse_income", 0)
     children = user_input.get("Children", 0)
@@ -24,8 +19,6 @@ def predict_default(user_input: dict) -> int:
     monthly_payment = loan_amount / loan_term
     payment_to_income = monthly_payment / (adjusted_income + 1)
 
-
-    # 🔧 Подготовка признаков
     features = {
         "Age": user_input.get("Age", 30),
         "Gender": user_input.get("Gender", "Мужчина"),
@@ -48,15 +41,13 @@ def predict_default(user_input: dict) -> int:
         "Payment_to_income_ratio": payment_to_income
     }
 
-    # 🧠 Кодируем категориальные признаки
     for col, enc in encoders.items():
         val = features.get(col)
         if val in enc.classes_:
             features[col] = enc.transform([val])[0]
         else:
-            features[col] = 0  # default if unseen
+            features[col] = 0
 
-    # 🧮 Вектор признаков
     df_input = pd.DataFrame([features])
     prediction = model.predict(df_input)[0]
 
