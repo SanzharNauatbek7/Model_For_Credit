@@ -1,0 +1,3 @@
+﻿Age,Gender,Income,Work_experience,Children,Has_mortgage,Has_car,Credit_history,Education,Region,Current_loans,Marital_status,Spouse_income,Employment_type,Housing_type,Loan_amount,Loan_term_months,Prediction
+45,Мужчина,710000,15,3,1,1,Хорошая,Высшее,Алматы,4,Женат/Замужем,400000,Безработный,Собственное,2000000,12,1
+45,Женщина,510000,9,3,1,1,Хорошая,Высшее,Алматы,3,Женат/Замужем,400000,Сотрудник,Собственное,2000000,12,1
