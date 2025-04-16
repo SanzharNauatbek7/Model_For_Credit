@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+*.csv
+*.pkl
+*.log
+
+# Env
+.env
+
+# MacOS / Windows
+.DS_Store
+Thumbs.db
+
