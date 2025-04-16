@@ -11,7 +11,6 @@ st.set_page_config(page_title="💳 Credit Checker", layout="centered")
 st.title("Kaspi-like Кредитный Скоринг 💸")
 st.write("Введите данные клиента, чтобы узнать — одобрен ли кредит.")
 
-# 🎛 Ввод данных
 age = st.slider("Возраст", 18, 65, 30)
 gender = st.selectbox("Пол", ["Мужчина", "Женщина"])
 marital_status = st.selectbox("Семейное положение", ["Не женат/не замужем", "Женат/Замужем"])
@@ -35,11 +34,8 @@ current_loans = st.slider("Текущие кредиты", 0, 5, 0)
 loan_amount = st.number_input("Желаемая сумма кредита (₸)", min_value=10000, max_value=2000000, step=10000, value=500000)
 loan_term_months = st.selectbox("Срок кредита (в месяцах)", [6, 12, 24, 36, 48, 60], index=2)
 
-
-# 👶 Учёт детей: отнимаем 30,000 за каждого
 adjusted_income = income + spouse_income - (children * 30000)
 
-# 📦 Сбор данных
 user_input = {
     "Age": age,
     "Gender": gender,
@@ -60,7 +56,6 @@ user_input = {
     "Loan_term_months": loan_term_months
 }
 
-# 🔍 Предсказание
 if st.button("Проверить решение"):
     result = predict_default(user_input)
     log_input(user_input, result)
